@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
     public Vector3 pushForce;
     public TMP_Text Timer;
     private float time = 0 ;
+    public TMP_Text scoreText;
+    public int CurrentScore;
+    public bool StopTimer = false;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -58,7 +62,12 @@ public class GameManager : MonoBehaviour
             rb.AddForce(pushForce);
             Debug.Log("vverh is pressed");
         }
-        time = time + Time.deltaTime;
+        if (!StopTimer)
+        {
+            time = time + Time.deltaTime;
+        }
+        
         Timer.text = "Time: " + time.ToString("F0") + " s";
+        scoreText.text = "Your score: " + CurrentScore;
     }
 }
